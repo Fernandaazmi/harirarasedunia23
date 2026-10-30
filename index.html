@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Hari Rara Sedunia ke-23</title>
+
+    <!-- FAVICON (ICON WEB) -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                        fun: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        pop: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            pink: '#ec4899',
+                            pinkdark: '#db2777'
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float-1': 'float 4s ease-in-out infinite',
+                        'float-2': 'float 6s ease-in-out infinite 1s',
+                        'float-3': 'float 5s ease-in-out infinite 2s',
+                        'flicker': 'flicker 0.6s ease-in-out infinite alternate',
+                        'smoke': 'smoke 2s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(6deg)' },
+                        },
+                        flicker: {
+                            '0%': { transform: 'scale(1) rotate(-2deg)', opacity: '0.9', boxShadow: '0 0 10px #f59e0b, 0 0 20px #ef4444' },
+                            '50%': { transform: 'scale(1.15) rotate(2deg)', opacity: '1', boxShadow: '0 0 15px #fbbf24, 0 0 25px #f97316' },
+                            '100%': { transform: 'scale(0.95) rotate(-1deg)', opacity: '0.85', boxShadow: '0 0 8px #f59e0b, 0 0 18px #ef4444' },
+                        },
+                        smoke: {
+                            '0%': { opacity: '0.8', transform: 'translateY(0) scale(1)' },
+                            '100%': { opacity: '0', transform: 'translateY(-40px) scale(2.5)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fffafb;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        .bg-festive {
+            background: radial-gradient(circle at 10% 20%, rgba(253, 164, 175, 0.25) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(244, 63, 94, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(251, 207, 232, 0.2) 0%, transparent 60%);
+        }
+
+        .glow-pop {
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        .card-clean {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid #fecdd3;
+            box-shadow: 0 15px 35px -10px rgba(244, 63, 94, 0.08);
+        }
+
+        .btn-pop {
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-pop:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.45);
+        }
+
+        .polaroid-frame {
+            background: white;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .polaroid-frame:hover {
+            transform: scale(1.08) rotate(0deg) !important;
+            z-index: 30;
+            box-shadow: 0 20px 30px -10px rgba(236, 72, 153, 0.3);
+        }
+
+        .tape {
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #fff1f2;
+            border-radius: 12px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #f43f5e;
+            border-radius: 12px;
+        }
+
+        .confetti-dot {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* VIRTUAL CAKE STYLES */
+        .flame {
+            width: 14px;
+            height: 22px;
+            background: linear-gradient(to top, #ef4444 0%, #f59e0b 50%, #fef08a 100%);
+            border-radius: 50% 50% 20% 20%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .flame-glow {
+            filter: drop-shadow(0 0 8px #f59e0b) drop-shadow(0 0 15px #ef4444);
+        }
+
+        .smoke-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(156, 163, 175, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pink-100 selection:text-pink-900 bg-festive">
+
+    <!-- 1. ENVELOPE OVERLAY -->
+    <div id="envelopeOverlay" class="fixed inset-0 z-50 flex flex-col justify-center items-center bg-gradient-to-br from-pink-100 via-rose-50 to-pink-50 transition-all duration-1000 px-6 overflow-hidden">
+        
+        <!-- Background Glowing Elements -->
+        <div class="absolute inset-0 glow-pop pointer-events-none"></div>
+
+        <!-- Floating Festive Elements / Party Decoration -->
+        <div class="absolute top-10 left-8 sm:left-16 animate-float-1 pointer-events-none opacity-80">
+            <span class="text-4xl sm:text-5xl">🎉</span>
+        </div>
+        <div class="absolute top-16 right-10 sm:right-20 animate-float-2 pointer-events-none opacity-80">
+            <span class="text-4xl sm:text-5xl">👑</span>
+        </div>
+        <div class="absolute bottom-12 left-12 sm:left-24 animate-float-3 pointer-events-none opacity-80">
+            <span class="text-4xl sm:text-5xl">🎈</span>
+        </div>
+        <div class="absolute bottom-20 right-12 sm:right-28 animate-float-1 pointer-events-none opacity-80">
+            <span class="text-4xl sm:text-5xl">🎂</span>
+        </div>
+
+        <!-- Floating Badges / Decorative Shapes -->
+        <div class="absolute top-1/4 left-6 hidden lg:flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-pink-200 animate-float-2">
+            <span class="text-lg">✨</span>
+            <span class="text-xs font-bold text-slate-800">Special Day for Rara!</span>
+        </div>
+        <div class="absolute bottom-1/4 right-8 hidden lg:flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-pink-200 animate-float-3">
+            <span class="text-lg">💖</span>
+            <span class="text-xs font-bold text-slate-800">Happy 23rd Birthday!</span>
+        </div>
+
+        <!-- Confetti Dots Decoration -->
+        <div class="confetti-dot w-3 h-3 bg-pop-pink top-20 left-1/3 animate-ping"></div>
+        <div class="confetti-dot w-2 h-2 bg-rose-400 top-40 right-1/4 animate-bounce"></div>
+        <div class="confetti-dot w-4 h-4 bg-pink-300 bottom-32 left-1/4 animate-pulse"></div>
+        <div class="confetti-dot w-3 h-3 bg-pop-pink bottom-20 right-1/3 animate-ping"></div>
+
+        <!-- Main Envelope Card Container -->
+        <div class="text-center space-y-8 max-w-md w-full relative z-10">
+            
+            <div class="space-y-3">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-pink-200/80 border border-pink-300 text-pop-pink font-extrabold rounded-full text-xs uppercase tracking-widest shadow-md animate-bounce-slow">
+                    <i data-lucide="party-popper" class="w-4 h-4 text-pop-pink"></i> Special Celebration 🎉
+                </div>
+                <h1 class="font-display text-4xl sm:text-5xl text-slate-900 font-black tracking-tight drop-shadow-sm">
+                    Hari Rara Sedunia
+                </h1>
+                <p class="text-xs font-bold text-pop-pink tracking-wider uppercase">✨ Turning 23 & Fabulous ✨</p>
+            </div>
+
+            <!-- Envelope Box -->
+            <div class="relative mx-auto w-80 h-56 bg-white/95 backdrop-blur-md border-2 border-pink-300 rounded-3xl shadow-2xl flex flex-col items-center justify-center p-6 transform hover:scale-105 transition-transform duration-300 group">
+                <!-- Outer Dashed Ring -->
+                <div class="absolute inset-0 border-2 border-pink-200 m-2 rounded-2xl pointer-events-none border-dashed"></div>
+
+                <button onclick="openEnvelope()" class="z-10 w-24 h-24 bg-gradient-to-tr from-pop-pink to-rose-500 text-white rounded-2xl flex flex-col items-center justify-center shadow-xl transition-all hover:scale-110 active:scale-95 cursor-pointer group-hover:rotate-2">
+                    <i data-lucide="sparkles" class="w-10 h-10 text-white group-hover:rotate-45 transition-transform duration-300"></i>
+                    <span class="text-[11px] uppercase font-extrabold tracking-wider mt-1">BUKA</span>
+                </button>
+
+                <div class="absolute bottom-3 text-[11px] font-semibold text-slate-400 flex items-center gap-1">
+                    <i data-lucide="heart" class="w-3 h-3 text-pop-pink fill-pop-pink"></i> Click to unveil surprise
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-600 font-bold animate-pulse">
+                Klik tombol di atas untuk membuka perayaan Hari Rara Sedunia ✨
+            </p>
+        </div>
+    </div>
+
+    <!-- MAIN WEBSITE CONTENT -->
+    <div id="mainContent" class="opacity-0 transition-opacity duration-1000 relative">
+        
+        <!-- FLOATING MUSIC PLAYER -->
+        <div class="fixed bottom-6 right-6 z-40">
+            <button id="musicToggle" onclick="toggleMusic()" class="flex items-center gap-3 bg-white/90 backdrop-blur-md border border-pink-200 px-5 py-3 rounded-full shadow-lg hover:border-pop-pink transition-all text-slate-800 text-xs font-semibold tracking-wider">
+                <i id="musicIcon" data-lucide="disc" class="w-4 h-4 text-pop-pink animate-spin"></i>
+                <span id="musicText">Musik Spesial Rara 🎵</span>
+            </button>
+            <!-- LAGU AUDIO LOCAL -->
+            <audio id="bgMusic" loop src="lagu.mp3"></audio>
+        </div>
+
+        <!-- HEADER NAVIGATION -->
+        <header class="fixed top-0 left-0 w-full z-30 bg-white/80 backdrop-blur-md border-b border-pink-100">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-pop-pink animate-ping"></div>
+                    <span class="font-display text-xl font-black tracking-tight text-slate-900">RARA<span class="text-pop-pink">.23</span></span>
+                </div>
+                <nav class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <a href="#kue-ultah" class="hover:text-pop-pink transition-colors">Tiup Lilin</a>
+                    <a href="#ucapan" class="hover:text-pop-pink transition-colors">Surat Milad</a>
+                    <a href="#rara-tahun-ini" class="hover:text-pop-pink transition-colors">Rara Tahun Ini</a>
+                    <a href="#kado-kejutan" class="hover:text-pop-pink transition-colors">Kado Kejutan</a>
+                    <a href="#doa" class="hover:text-pop-pink transition-colors">Harapan & PIN</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="min-h-screen flex items-center justify-center px-6 pt-28 pb-16 relative">
+            <div class="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 bg-pink-100/70 border border-pink-300 px-4 py-1.5 rounded-full text-pop-pink text-xs font-bold tracking-wider uppercase shadow-sm">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-pop-pink"></i> Perayaan Usia Ke-23
+                    </div>
+                    
+                    <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1]">
+                        Selamat Hari <br>
+                        <span class="text-pop-pink">Rara Sedunia! ✨</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Selamat 'Hari Rara Sedunia ke-23' untuk Queen Rara. Semoga ucapan sederhana ini menjadi awal dari banyak hal baik yang akan kamu capai di usia baru ini 🙏.
+                    </p>
+
+                    <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="#kue-ultah" class="btn-pop px-8 py-4 rounded-2xl text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2">
+                            🎂 Tiup Lilin Virtual
+                        </a>
+                        <a href="#ucapan" class="bg-white hover:bg-pink-50 text-slate-800 border border-pink-200 px-8 py-4 rounded-2xl text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2 transition-all shadow-sm">
+                            <i data-lucide="mail-open" class="w-4 h-4 text-pop-pink"></i> Special Letter
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
+                    <div class="relative w-full max-w-md">
+                        <!-- PATH GAMBAR LOKAL DIPERBARUI -->
+                        <img src="Foto%20Polaroid/polaroid1.jpg" alt="Foto Rara" class="rounded-3xl shadow-2xl w-full h-[450px] md:h-[520px] object-cover object-top hover:scale-[1.01] transition-transform duration-500 border-2 border-pink-200">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIRTUAL BIRTHDAY CAKE & CANDLE SECTION -->
+        <section id="kue-ultah" class="py-20 px-6 max-w-4xl mx-auto">
+            <div class="card-clean rounded-[2.5rem] p-8 md:p-12 text-center space-y-8 relative overflow-hidden border-2 border-pink-200 shadow-xl">
+                
+                <div class="space-y-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-pop-pink bg-pink-100 px-4 py-1.5 rounded-full">
+                        Virtual Cake & Candles 🕯️
+                    </span>
+                    <h2 class="font-display text-3xl md:text-5xl font-black text-slate-900">Make A Wish, Queen Rara! ✨</h2>
+                    <p class="text-xs md:text-sm text-slate-500 max-w-md mx-auto">
+                        Klik atau sentuh api lilin, atau tekan tombol di bawah untuk meniup lilinnya!
+                    </p>
+                </div>
+
+                <!-- 3D VIRTUAL CAKE CONTAINER -->
+                <div class="relative w-full max-w-xs md:max-w-sm mx-auto h-64 md:h-72 flex flex-col items-center justify-end pb-4">
+                    
+                    <!-- CANDLES LAYER (3 MAIN CANDLES WITH 23 NUMBER EMBLEM) -->
+                    <div id="candlesContainer" class="relative z-20 flex justify-center items-end gap-6 md:gap-8 mb-[-4px]">
+                        
+                        <!-- CANDLE 1 -->
+                        <div class="relative flex flex-col items-center cursor-pointer group" onclick="blowCandle(0)">
+                            <div id="smoke-0" class="absolute -top-10 hidden">
+                                <div class="smoke-particle animate-smoke"></div>
+                            </div>
+                            <div id="flame-0" class="flame flame-glow animate-flicker group-hover:scale-125 transition-transform"></div>
+                            <div class="w-1.5 h-3 bg-amber-900"></div>
+                            <div class="w-4 h-12 bg-gradient-to-b from-pink-300 via-rose-300 to-pink-400 rounded-t-sm shadow-sm border border-pink-400/30"></div>
+                        </div>
+
+                        <!-- CANDLE 2 (CENTER - NUMBER 23 BADGE) -->
+                        <div class="relative flex flex-col items-center cursor-pointer group scale-110" onclick="blowCandle(1)">
+                            <div id="smoke-1" class="absolute -top-10 hidden">
+                                <div class="smoke-particle animate-smoke"></div>
+                            </div>
+                            <div id="flame-1" class="flame flame-glow animate-flicker group-hover:scale-125 transition-transform"></div>
+                            <div class="w-1.5 h-3 bg-amber-900"></div>
+                            <div class="w-5 h-14 bg-gradient-to-b from-yellow-200 via-amber-200 to-yellow-300 rounded-t-sm shadow-sm border border-amber-300 flex items-center justify-center font-display font-black text-[10px] text-amber-800">
+                                23
+                            </div>
+                        </div>
+
+                        <!-- CANDLE 3 -->
+                        <div class="relative flex flex-col items-center cursor-pointer group" onclick="blowCandle(2)">
+                            <div id="smoke-2" class="absolute -top-10 hidden">
+                                <div class="smoke-particle animate-smoke"></div>
+                            </div>
+                            <div id="flame-2" class="flame flame-glow animate-flicker group-hover:scale-125 transition-transform"></div>
+                            <div class="w-1.5 h-3 bg-amber-900"></div>
+                            <div class="w-4 h-12 bg-gradient-to-b from-pink-300 via-rose-300 to-pink-400 rounded-t-sm shadow-sm border border-pink-400/30"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- CAKE TOP LAYER -->
+                    <div class="w-48 md:w-56 h-12 bg-gradient-to-r from-pink-300 via-rose-200 to-pink-300 rounded-t-full shadow-inner border-b-4 border-pink-400/40 relative z-10 flex items-center justify-center">
+                        <div class="absolute -top-1 w-full flex justify-around px-2">
+                            <span class="text-xs">🍓</span>
+                            <span class="text-xs">🍒</span>
+                            <span class="text-xs">🍓</span>
+                        </div>
+                    </div>
+
+                    <!-- CAKE MIDDLE LAYER -->
+                    <div class="w-56 md:w-64 h-16 bg-gradient-to-r from-rose-400 via-pink-400 to-rose-400 border-b-4 border-pink-500/40 shadow-md relative z-10 flex items-center justify-center">
+                        <div class="w-full h-3 bg-white/40 transform -rotate-1"></div>
+                    </div>
+
+                    <!-- CAKE BOTTOM LAYER -->
+                    <div class="w-64 md:w-72 h-20 bg-gradient-to-r from-pink-500 via-rose-500 to-pink-500 rounded-b-2xl shadow-xl relative z-10 border-t border-pink-300/30 flex items-center justify-center overflow-hidden">
+                        <div class="text-white/20 font-display font-black text-2xl tracking-widest uppercase select-none">
+                            Queen Rara
+                        </div>
+                    </div>
+
+                    <!-- CAKE PLATE -->
+                    <div class="w-72 md:w-80 h-4 bg-slate-200 rounded-full shadow-2xl border-t border-slate-300 mt-[-2px]"></div>
+                </div>
+
+                <!-- BUTTON CONTROLS -->
+                <div class="flex flex-wrap justify-center items-center gap-4 pt-2">
+                    <button id="blowBtn" onclick="blowAllCandles()" class="btn-pop px-8 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                        <span>💨</span> Tiup Lilin Virtual
+                    </button>
+                    <button id="relightBtn" onclick="relightCandles()" class="hidden bg-slate-800 hover:bg-slate-900 text-white px-8 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-md">
+                        <span>🕯️</span> Nyalakan Kembali
+                    </button>
+                </div>
+
+                <!-- WISH MESSAGE ALERT BOX -->
+                <div id="wishBox" class="hidden p-5 bg-pink-100/80 border border-pink-300 rounded-2xl max-w-md mx-auto text-slate-800 text-xs md:text-sm font-semibold animate-bounce">
+                    🎉 <span class="text-pop-pink font-extrabold">Make a wish!</span> Semoga semua doa dan impian Queen Rara di usia 23 ini dikabulkan oleh Allah SWT. Aamiin! 🤲✨
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SURAT MILAD UNTUK RARA + 3 POLAROID FOTO KONYOL -->
+        <section id="ucapan" class="py-24 px-6 bg-pink-50/60 border-y border-pink-100 relative">
+            <div class="max-w-6xl mx-auto space-y-10">
+                
+                <div class="text-center space-y-3">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-pop-pink bg-pink-100 px-4 py-1.5 rounded-full">Special Letter</span>
+                    <h2 class="font-display text-3xl md:text-5xl font-extrabold text-slate-900">For Queen Rara</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- KIRI: SURAT MILAD -->
+                    <div class="lg:col-span-7 card-clean p-8 md:p-10 rounded-3xl space-y-5 text-slate-700 text-base md:text-lg leading-relaxed">
+                        <div class="flex items-center gap-3 border-b border-pink-100 pb-4">
+                            <div class="w-10 h-10 rounded-xl bg-pop-pink text-white flex items-center justify-center font-bold">✨</div>
+                            <p class="font-display font-black text-slate-900 text-xl">Assalamualaikum Wr. WB. Queen,</p>
+                        </div>
+                        <p>
+                            Happy milad yang ke-23, Queen Rara! Di usia yang makin dewasa ini, makasih ya udah tumbuh jadi orang yang hangat, bawa dampak baik, dan selalu bikin bahagia orang-orang di sekitar kamu (dan pastinya aku juga sih, wkwkwk).
+                        </p>
+                        <p>
+                            Selamat merayakan <strong>"Hari Rara Sedunia"</strong>. Ucapan ini dibuat sebagai bentuk apresiasi karena kamu sudah ada di dunia ini. Semoga langkah-langkah barumu ke depan selalu diberi kemudahan, kebahagiaan, dan penuh keberkahan.
+                        </p>
+                        <div class="p-5 bg-pink-50 border-l-4 border-pop-pink rounded-r-2xl italic text-slate-800 text-sm md:text-base">
+                            "Tetaplah menjadi Rara yang tulus, selalu baik, dan happy serta <strong>BERDAMPAK</strong>."
+                        </div>
+                    </div>
+
+                    <!-- KANAN: 3 POLAROID FOTO KONYOL -->
+                    <div class="lg:col-span-5 relative h-[480px] sm:h-[500px] flex items-center justify-center mt-6 lg:mt-0">
+                        
+                        <!-- Polaroid 1 -->
+                        <div class="absolute top-2 left-2 sm:left-6 w-44 sm:w-48 polaroid-frame -rotate-6 z-10">
+                            <div class="tape absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 rotate-2 z-20"></div>
+                            <div class="w-full aspect-square bg-slate-50 flex items-center justify-center overflow-hidden rounded-sm">
+                                <img src="Foto%20Polaroid/polaroid1.jpg" class="w-full h-full object-cover" alt="Foto Konyol RR 1">
+                            </div>
+                            <p class="text-center text-xs text-slate-600 font-bold mt-2 font-display">Wkwkwkwkwk #1 🤪</p>
+                        </div>
+
+                        <!-- Polaroid 2 -->
+                        <div class="absolute top-12 right-2 sm:right-6 w-44 sm:w-48 polaroid-frame rotate-6 z-20">
+                            <div class="tape absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 -rotate-3 z-20"></div>
+                            <div class="w-full aspect-square bg-slate-50 flex items-center justify-center overflow-hidden rounded-sm">
+                                <img src="Foto%20Polaroid/polaroid2.jpg" class="w-full h-full object-cover" alt="Mbeeek Foto">
+                            </div>
+                            <p class="text-center text-xs text-slate-600 font-bold mt-2 font-display">Mbeeek 😝</p>
+                        </div>
+
+                        <!-- Polaroid 3 -->
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-44 sm:w-48 polaroid-frame -rotate-2 z-10">
+                            <div class="tape absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 rotate-1 z-20"></div>
+                            <div class="w-full aspect-square bg-slate-50 flex items-center justify-center overflow-hidden rounded-sm">
+                                <img src="Foto%20Polaroid/polaroid3.jpg" class="w-full h-full object-cover" alt="Foto Wleeee">
+                            </div>
+                            <p class="text-center text-xs text-slate-600 font-bold mt-2 font-display">Wleeeee 😛</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RARA TAHUN INI -->
+        <section id="rara-tahun-ini" class="py-24 px-6 max-w-6xl mx-auto space-y-12">
+            <div class="text-center space-y-3">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-pop-pink bg-pink-100 px-4 py-1.5 rounded-full">Moments</span>
+                <h2 class="font-display text-3xl md:text-5xl font-extrabold text-slate-900">Satu Tahap Beres Tahun Ini</h2>
+                <p class="text-sm text-slate-500 max-w-lg mx-auto">Proud of You, Queen!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Momen 1 -->
+                <div class="card-clean rounded-3xl p-5 space-y-4 hover:border-pop-pink transition-all">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center">
+                        <img src="Foto%20Tahap%20Beres%20Tahun%20ini/momen1.jpg" alt="Queen Rara Sidang" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-pop-pink uppercase tracking-wider">Momen #1</span>
+                        <h4 class="font-display font-bold text-slate-800 text-lg">Sidang</h4>
+                        <p class="text-xs text-slate-500 mt-1">Hari paling melegakan yang sudah dilalui Queen Rara</p>
+                    </div>
+                </div>
+
+                <!-- Momen 2 -->
+                <div class="card-clean rounded-3xl p-5 space-y-4 hover:border-pop-pink transition-all">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center">
+                        <img src="Foto%20Tahap%20Beres%20Tahun%20ini/momen2.jpg" alt="Queen Rara Kelulusan" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-pop-pink uppercase tracking-wider">Momen #2</span>
+                        <h4 class="font-display font-bold text-slate-800 text-lg">Celebrate</h4>
+                        <p class="text-xs text-slate-500 mt-1">Queen Rara celebrates her bachelor's degree.</p>
+                    </div>
+                </div>
+
+                <!-- Momen 3 -->
+                <div class="card-clean rounded-3xl p-5 space-y-4 hover:border-pop-pink transition-all">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center">
+                        <img src="Foto%20Tahap%20Beres%20Tahun%20ini/momen3.jpg" alt="Queen Rara Yudisium" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-pop-pink uppercase tracking-wider">Momen #3</span>
+                        <h4 class="font-display font-bold text-slate-800 text-lg">Yudisium</h4>
+                        <p class="text-xs text-slate-500 mt-1">Hari Yudisium Queen Rara tentu saja membawa senyum manisnya</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KADO KEJUTAN MILAD -->
+        <section id="kado-kejutan" class="py-24 px-6 bg-pink-50/60 border-y border-pink-100 relative">
+            <div class="max-w-4xl mx-auto space-y-10 text-center">
+                
+                <div class="space-y-3">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-pop-pink bg-pink-100 px-4 py-1.5 rounded-full">Mystery Box</span>
+                    <h2 class="font-display text-3xl md:text-5xl font-extrabold text-slate-900">Kado Kejutan Milad 🎁</h2>
+                </div>
+
+                <div class="card-clean p-10 md:p-14 rounded-3xl space-y-6 border-2 border-pink-200 shadow-xl max-w-2xl mx-auto">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-pop-pink text-white flex items-center justify-center shadow-lg animate-bounce">
+                        <i data-lucide="gift" class="w-10 h-10"></i>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <h3 class="font-display text-2xl md:text-3xl font-extrabold text-slate-900">Spesial Buat Kamu Queen! 🤫</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Kado ini dibuat karena terinspirasi dari kamu yang selalu peduli sama orang lain. Semoga bisa jadi pengingat kecil buat kamu ya, kalau kehadiran kamu itu beneran bawa dampak baik buat dunia sekitar.
+                        </p>
+                    </div>
+
+                    <button onclick="openSurpriseModal()" class="btn-pop px-9 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest flex items-center gap-2 mx-auto">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Buka Kado Kejutan
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HARAPAN, DOA SPESIAL & SURAT PRIVAT -->
+        <section id="doa" class="py-24 px-6 max-w-3xl mx-auto space-y-12">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-pop-pink bg-pink-100 px-4 py-1.5 rounded-full">Doa Tulus</span>
+                <h2 class="font-display text-3xl md:text-5xl font-extrabold text-slate-900">Harapan Untuk Usia 23</h2>
+            </div>
+
+            <div class="card-clean p-8 md:p-10 rounded-3xl space-y-6 text-slate-700">
+                <div class="flex items-center gap-4 border-b border-pink-100 pb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-pop-pink text-white flex items-center justify-center font-bold font-display text-xl shadow-md">23</div>
+                    <div>
+                        <h3 class="font-display font-extrabold text-slate-900 text-lg">Harapan Terbaik Untuk Queen Rara</h3>
+                        <p class="text-xs text-slate-500">Semoga yang diharapkan terwujud satu per satu</p>
+                    </div>
+                </div>
+
+                <ul class="space-y-5 text-sm md:text-base leading-relaxed">
+                    <li class="flex items-start gap-3">
+                        <span class="text-pop-pink font-extrabold font-display">01.</span>
+                        <span><strong>Kesehatan & Ketenangan Hati:</strong> Semoga kamu selalu diliputi rasa tenang, tubuhmu selalu sehat, dan setiap langkahmu dipermudah di mana pun berada.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-pop-pink font-extrabold font-display">02.</span>
+                        <span><strong>Pencapaian & Impian:</strong> Semoga semua cita-cita dan target yang sedang kamu lakukan di usia 23 ini terwujud satu per satu dengan hasil terbaik.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-pop-pink font-extrabold font-display">03.</span>
+                        <span><strong>Kebahagiaan & Keberkahan:</strong> Semoga selalu ada alasan baik yang membuat kamu selalu tersenyum dan bersyukur setiap harinya ya.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- SURAT PRIVAT DENGAN VALIDASI PIN -->
+            <div id="privateMessageSection" class="card-clean p-8 rounded-3xl text-center space-y-4">
+                <div class="w-12 h-12 mx-auto rounded-2xl bg-pink-100 text-pop-pink flex items-center justify-center">
+                    <i data-lucide="lock" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-display text-xl font-bold text-slate-800">For you ya Queen...</h3>
+                    <p class="text-xs text-slate-500 mt-1">PIN silahkan cari di box hadiah</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2 max-w-xs mx-auto pt-2">
+                    <input type="password" id="pinInput" placeholder="Masukkan 4 Digit PIN" maxlength="4" class="w-full px-4 py-2.5 text-center text-sm border border-slate-200 rounded-xl focus:outline-none focus:border-pop-pink bg-white shadow-sm font-bold tracking-widest">
+                    <button onclick="unlockPrivateMessage()" class="btn-pop px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider">Buka</button>
+                </div>
+                <p id="pinErrorMsg" class="text-xs text-red-500 font-bold hidden">❌ Coba lagi dan cari PIN di box hadiah</p>
+            </div>
+
+            <!-- HASIL KETIKA PIN BENAR: KONTEN PRANK SCROLL DENGAN AREA SCROLL SANGAT PANJANG -->
+            <div id="unlockedContent" class="hidden p-6 md:p-8 rounded-3xl bg-white border-2 border-pink-300 shadow-2xl text-center">
+                
+                <div class="space-y-4 border-b border-pink-100 pb-6">
+                    <span class="inline-block px-4 py-1 bg-red-100 text-red-600 font-extrabold text-xs uppercase rounded-full tracking-widest animate-bounce">
+                        ⚠️ Prank Alert ⚠️
+                    </span>
+                    <h3 class="font-fun text-4xl sm:text-6xl text-pop-pink font-extrabold tracking-tight">
+                        PRAAANKK!!! 🤪😜
+                    </h3>
+                    <p class="text-sm font-bold text-slate-600">
+                        Tapi kalau masih penasaran, yo wes terusin aja scroll terus ke bawah! 👇
+                    </p>
+                </div>
+
+                <!-- AREA SCROLL PRANK SANGAT PANJANG -->
+                <div class="h-[700px] overflow-y-auto custom-scroll my-6 p-6 bg-pink-50/50 rounded-2xl border border-pink-100 space-y-96 text-slate-700">
+                    
+                    <div class="pt-10">
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Nyantai aja scrollnya, toh gak ad apa-apa (paling)</p>
+                        <i data-lucide="arrow-down" class="w-6 h-6 mx-auto text-pop-pink animate-bounce mt-3"></i>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-xl sm:text-2xl font-bold text-slate-800">
+                            Masih penasaran? 🤔
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            Kok masih scroll?, penasaran ea?,😜
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-xl sm:text-2xl font-bold text-pop-pink">
+                            Awas, nyesel lo yo kalo masih mbok scroll... 🏃💨
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            Pokok sudah tak peringatkan
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-xl sm:text-2xl font-bold text-slate-800">
+                            WKWKWKWKWKWK masih scroll dong 🤪
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            Tak bilangi lagi ya, awas nyesel scroll!
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-xl sm:text-2xl font-bold text-pop-pink">
+                            Kok mbok scroll terus sih? 🔥
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            Scrollen terus wes, lek gak percaya. Gak ada apa-apa PALING
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-xl sm:text-2xl font-bold text-slate-800">
+                            Penasaran toh? ✨
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            Ya wes, Terserah wkwkwkwk
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-xl sm:text-2xl font-bold text-pop-pink">
+                            Dibilangi gak ada apa-apa kok 😂
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            Alambooh, scroll ae lek masih penasaran
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-xl sm:text-2xl font-bold text-slate-800">
+                            TAK PERINGATKAN, STOP!!! ⏳
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            GAK ADA APA-APA QUEEN!!!
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="font-fun text-2xl sm:text-3xl font-black text-rose-600 animate-pulse">
+                            Kalau kataku stop wes wkwkwkwkwk
+                        </p>
+                        <p class="text-xs text-slate-500">
+                            SIAP-SIAP YA....
+                        </p>
+                    </div>
+
+                    <!-- BAGIAN BOTTOM/MENTOK PRANK SCROLL -->
+                    <div class="pt-10 pb-8 space-y-6 border-t-2 border-dashed border-pink-200">
+                        <div class="max-w-xs mx-auto aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-white">
+                            <!-- PATH GAMBAR PRANK LOKAL -->
+                            <img src="Foto%20Prank/prank.jpg" alt="Foto Prank Rara" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="font-fun text-2xl sm:text-3xl text-pop-pink font-black leading-tight">
+                                WKWKWKWKWKWKWK SELAMAT HARI RARA SEDUNIA YA, QUEEN!!!!!! 👑💖✨
+                            </h4>
+                            <p class="text-xs text-slate-600 font-medium">
+                                Semoga harimu penuh tawa, kebahagiaan, dan makin banyak rezeki! Teruslah BERDAMPAK Queen!
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COUNTDOWN TIMER -->
+        <section class="py-20 px-6 max-w-5xl mx-auto">
+            <div class="relative bg-white rounded-[2.5rem] p-8 md:p-14 border-2 border-pink-200 shadow-2xl overflow-hidden text-center space-y-8">
+                <div class="relative z-10 space-y-3">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-pink-50 border border-pink-200 text-pop-pink rounded-full text-xs font-black uppercase tracking-widest">
+                        <i data-lucide="clock" class="w-3.5 h-3.5"></i> Excited For The Next Journey
+                    </div>
+                    <h3 class="font-display text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+                        Menuju Hari Rara Sedunia <span class="text-pop-pink">ke-24</span> 🚀
+                    </h3>
+                </div>
+
+                <div class="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto pt-2">
+                    <div class="bg-gradient-to-b from-white to-pink-50/40 p-5 rounded-3xl border border-pink-200/80 shadow-md flex flex-col items-center justify-center">
+                        <span id="cd-days" class="font-display text-4xl md:text-5xl font-black text-pop-pink">365</span>
+                        <span class="text-[11px] uppercase font-bold tracking-widest text-slate-400 mt-1">Hari</span>
+                    </div>
+                    <div class="bg-gradient-to-b from-white to-pink-50/40 p-5 rounded-3xl border border-pink-200/80 shadow-md flex flex-col items-center justify-center">
+                        <span id="cd-hours" class="font-display text-4xl md:text-5xl font-black text-pop-pink">00</span>
+                        <span class="text-[11px] uppercase font-bold tracking-widest text-slate-400 mt-1">Jam</span>
+                    </div>
+                    <div class="bg-gradient-to-b from-white to-pink-50/40 p-5 rounded-3xl border border-pink-200/80 shadow-md flex flex-col items-center justify-center">
+                        <span id="cd-minutes" class="font-display text-4xl md:text-5xl font-black text-pop-pink">00</span>
+                        <span class="text-[11px] uppercase font-bold tracking-widest text-slate-400 mt-1">Menit</span>
+                    </div>
+                    <div class="bg-gradient-to-b from-white to-pink-50/40 p-5 rounded-3xl border border-pink-200/80 shadow-md flex flex-col items-center justify-center">
+                        <span id="cd-seconds" class="font-display text-4xl md:text-5xl font-black text-pop-pink">00</span>
+                        <span class="text-[11px] uppercase font-bold tracking-widest text-slate-400 mt-1">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-12 border-t border-pink-100 text-center space-y-2 bg-pink-50/40">
+            <p class="font-display text-lg font-bold text-slate-800">Hari Rara Sedunia ke-23 ✨</p>
+            <p class="text-xs text-slate-400">Memperingati Hari Rara Sedunia ke-23.</p>
+        </footer>
+
+    </div>
+
+    <!-- MODAL SURPRISE KADO -->
+    <div id="surpriseModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 p-4 md:p-6">
+        <div class="bg-white p-6 md:p-8 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scroll space-y-8 transform scale-95 transition-all duration-300 border border-pink-200 shadow-2xl" id="surpriseModalCard">
+            
+            <!-- Modal Header -->
+            <div class="flex justify-between items-start border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pop-pink to-rose-500 text-white flex items-center justify-center shadow-lg">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-pop-pink bg-pink-100 px-2.5 py-0.5 rounded-full">Kado Berdampak</span>
+                        <h3 class="font-display text-2xl font-extrabold text-slate-900">Jejak Kebaikan Atas Nama Rara ✨</h3>
+                    </div>
+                </div>
+                <button onclick="closeSurpriseModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold transition-colors">✕</button>
+            </div>
+
+            <!-- BAGIAN 1: Grid 5 Dokumentasi Bukti Donasi Kitabisa -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between border-b border-pink-100 pb-2">
+                    <h4 class="font-display font-bold text-slate-900 text-base md:text-lg flex items-center gap-2">
+                        <i data-lucide="file-check-2" class="w-5 h-5 text-pop-pink"></i> 5 Bukti Penyaluran Donasi Kitabisa.com:
+                    </h4>
+                    <span class="text-xs text-pop-pink font-extrabold">Terverifikasi ✅</span>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                    
+                    <!-- Donasi 1 -->
+                    <div class="border border-pink-200 rounded-2xl p-3 bg-white flex flex-col items-center space-y-2 hover:border-pop-pink hover:shadow-md transition-all">
+                        <div class="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-100">
+                            <img src="Foto%20Bukti%20Donasi/donasi1.jpg" alt="Bukti Donasi 1" class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700">Bukti Donasi #1</span>
+                    </div>
+
+                    <!-- Donasi 2 -->
+                    <div class="border border-pink-200 rounded-2xl p-3 bg-white flex flex-col items-center space-y-2 hover:border-pop-pink hover:shadow-md transition-all">
+                        <div class="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-100">
+                            <img src="Foto%20Bukti%20Donasi/donasi2.jpg" alt="Bukti Donasi 2" class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700">Bukti Donasi #2</span>
+                    </div>
+
+                    <!-- Donasi 3 -->
+                    <div class="border border-pink-200 rounded-2xl p-3 bg-white flex flex-col items-center space-y-2 hover:border-pop-pink hover:shadow-md transition-all">
+                        <div class="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-100">
+                            <img src="Foto%20Bukti%20Donasi/donasi3.jpg" alt="Bukti Donasi 3" class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700">Bukti Donasi #3</span>
+                    </div>
+
+                    <!-- Donasi 4 -->
+                    <div class="border border-pink-200 rounded-2xl p-3 bg-white flex flex-col items-center space-y-2 hover:border-pop-pink hover:shadow-md transition-all">
+                        <div class="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-100">
+                            <img src="Foto%20Bukti%20Donasi/donasi4.jpg" alt="Bukti Donasi 4" class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700">Bukti Donasi #4</span>
+                    </div>
+
+                    <!-- Donasi 5 -->
+                    <div class="border border-pink-200 rounded-2xl p-3 bg-white flex flex-col items-center space-y-2 hover:border-pop-pink hover:shadow-md transition-all">
+                        <div class="w-full aspect-square rounded-xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-100">
+                            <img src="Foto%20Bukti%20Donasi/donasi5.jpg" alt="Bukti Donasi 5" class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-700">Bukti Donasi #5</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BAGIAN 2: Banner Hero Terima Kasih & Gambar Ucapan -->
+            <div class="p-6 md:p-8 bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 rounded-2xl border border-pink-200 text-center space-y-5 shadow-sm">
+                <div class="space-y-2">
+                    <h4 class="font-display font-extrabold text-pop-pink text-xl md:text-2xl">Terima Kasih Banyak, Rara! 💖</h4>
+                    <p class="text-xs md:text-sm text-slate-700 leading-relaxed max-w-2xl mx-auto font-medium">
+                        Kado terbaik di usia ke-23 ini mengalirkan kebahagiaan nyata bagi sesama yang membutuhkan melalui platform Kitabisa.com atas nama <strong>Rara</strong>.
+                    </p>
+                </div>
+                
+                <div class="max-w-md mx-auto aspect-video rounded-2xl overflow-hidden shadow-md border-2 border-white bg-white flex items-center justify-center">
+                    <img src="Foto%20Bukti%20Donasi/Terima%20kasih%20Rara.jpg" alt="Foto Ucapan Terima Kasih Donasi" class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Footer Modal -->
+            <div class="pt-2 text-center">
+                <button onclick="closeSurpriseModal()" class="btn-pop px-8 py-3 rounded-xl text-xs font-bold uppercase tracking-wider">
+                    Tutup Kado Kejutan 💖
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        lucide.createIcons();
+
+        const CORRECT_PIN = "2709";
+
+        // Open Envelope Intro & Auto Play Music
+        function openEnvelope() {
+            const audio = document.getElementById('bgMusic');
+            audio.play().then(() => {
+                isPlaying = true;
+                document.getElementById('musicText').innerText = "Memutar Musik...";
+            }).catch(e => {
+                console.log("Autoplay blocked or failed", e);
+            });
+
+            document.getElementById('envelopeOverlay').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('envelopeOverlay').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('opacity-0');
+                confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, colors: ['#ec4899', '#f43f5e', '#ffffff', '#fbcfe8'] });
+            }, 800);
+        }
+
+        // Toggle Music
+        const audio = document.getElementById('bgMusic');
+        let isPlaying = false;
+        function toggleMusic() {
+            if (isPlaying) { 
+                audio.pause(); 
+                document.getElementById('musicText').innerText = "Musik Spesial Rara 🎵"; 
+            } else { 
+                audio.play(); 
+                document.getElementById('musicText').innerText = "Memutar Musik..."; 
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // VIRTUAL CANDLE LOGIC
+        let candleStates = [true, true, true]; // True = Lit, False = Blown out
+
+        function playBlowSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Blowing wind sound (white noise)
+                const bufferSize = ctx.sampleRate * 0.4;
+                const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+                
+                const noise = ctx.createBufferSource();
+                noise.buffer = buffer;
+                
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 400;
+                
+                const gain = ctx.createGain();
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+                
+                noise.connect(filter);
+                filter.connect(gain);
+                gain.connect(ctx.destination);
+                noise.start();
+
+                // Celebration chime sound
+                setTimeout(() => {
+                    const osc = ctx.createOscillator();
+                    const chimeGain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+                    osc.frequency.exponentialRampToValueAtTime(1046.50, ctx.currentTime + 0.3); // C6
+                    chimeGain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    chimeGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+                    osc.connect(chimeGain);
+                    chimeGain.connect(ctx.destination);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.5);
+                }, 200);
+            } catch (e) {
+                console.log("Audio Context not allowed without interaction", e);
+            }
+        }
+
+        function blowCandle(index) {
+            if (!candleStates[index]) return;
+
+            candleStates[index] = false;
+            const flame = document.getElementById(`flame-${index}`);
+            const smoke = document.getElementById(`smoke-${index}`);
+
+            flame.classList.add('hidden');
+            smoke.classList.remove('hidden');
+
+            playBlowSound();
+
+            setTimeout(() => {
+                smoke.classList.add('hidden');
+            }, 2000);
+
+            // Check if all candles are blown
+            if (candleStates.every(state => state === false)) {
+                allCandlesBlown();
+            }
+        }
+
+        function blowAllCandles() {
+            playBlowSound();
+            for (let i = 0; i < candleStates.length; i++) {
+                if (candleStates[i]) {
+                    candleStates[i] = false;
+                    const flame = document.getElementById(`flame-${i}`);
+                    const smoke = document.getElementById(`smoke-${i}`);
+                    flame.classList.add('hidden');
+                    smoke.classList.remove('hidden');
+                    setTimeout(() => smoke.classList.add('hidden'), 2000);
+                }
+            }
+            allCandlesBlown();
+        }
+
+        function allCandlesBlown() {
+            document.getElementById('blowBtn').classList.add('hidden');
+            document.getElementById('relightBtn').classList.remove('hidden');
+            document.getElementById('wishBox').classList.remove('hidden');
+
+            confetti({
+                particleCount: 180,
+                spread: 120,
+                origin: { y: 0.5 },
+                colors: ['#ec4899', '#f43f5e', '#fbbf24', '#ffffff']
+            });
+        }
+
+        function relightCandles() {
+            candleStates = [true, true, true];
+            for (let i = 0; i < candleStates.length; i++) {
+                document.getElementById(`flame-${i}`).classList.remove('hidden');
+                document.getElementById(`smoke-${i}`).classList.add('hidden');
+            }
+            document.getElementById('blowBtn').classList.remove('hidden');
+            document.getElementById('relightBtn').classList.add('hidden');
+            document.getElementById('wishBox').classList.add('hidden');
+        }
+
+        // Private Message PIN Unlock
+        function unlockPrivateMessage() {
+            const pin = document.getElementById('pinInput').value;
+            const errorMsg = document.getElementById('pinErrorMsg');
+            
+            if (pin === CORRECT_PIN) {
+                errorMsg.classList.add('hidden');
+                document.getElementById('privateMessageSection').classList.add('hidden');
+                document.getElementById('unlockedContent').classList.remove('hidden');
+                confetti({ particleCount: 120, spread: 90, colors: ['#ec4899', '#f43f5e', '#fb7185'] });
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        }
+
+        // Modal Surprise Handlers
+        function openSurpriseModal() {
+            const modal = document.getElementById('surpriseModal');
+            const card = document.getElementById('surpriseModalCard');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+            
+            confetti({ particleCount: 120, spread: 90, origin: { y: 0.5 }, colors: ['#ec4899', '#f43f5e', '#fb7185'] });
+        }
+
+        function closeSurpriseModal() {
+            const modal = document.getElementById('surpriseModal');
+            const card = document.getElementById('surpriseModalCard');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+        }
+
+        // Countdown Timer Logic
+        function updateCountdown() {
+            const now = new Date();
+            let nextBirthday = new Date(now.getFullYear() + 1, 8, 27); // September 27
+            const diff = nextBirthday - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').innerText = days;
+            document.getElementById('cd-hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('cd-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('cd-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
